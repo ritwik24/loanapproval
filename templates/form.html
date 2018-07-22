@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Form is here</h1>
+    
     <form action="{{ url_for('form') }}" method="post">
         {{ form.csrf_token }}
         {{ form.name.label }}
@@ -16,21 +17,27 @@
         {{ form.gender.label }}
         {{ form.gender }}
         <br>
+         {{ form.married.label }} 
+         {{ form.married }}
+        <br>
+         {{ form.education.label }} 
+         {{ form.education }}
+        <br>
+        {{ form.self_employed.label }}
+        {{ form.self_employed }}
+        <br>
+        
         {{ form.dependents.label }}
         {{ form.dependents }}
         <br>
-        {{ form.education.label }}
-        {{ form.education }}
-        <br>
+        
         {{ form.applicant_income.label }}
         {{ form.applicant_income }}
         <br>
         {{ form.coapplicant_income.label }}
         {{ form.coapplicant_income }}
         <br>
-        {{ form.property_area.label }}
-        {{ form.property_area }}
-        <br>
+        
         {{ form.loan_amount.label }}
         {{ form.loan_amount }}
         <br>
@@ -39,6 +46,9 @@
         <br>
         {{ form.credit_history.label }}
         {{ form.credit_history }}
+        <br>
+         {{ form.property_area.label }} 
+         {{ form.property_area }}
         <br>
         <input type="submit" value="Submit">
     </form>
