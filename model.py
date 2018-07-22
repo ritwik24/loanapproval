@@ -5,8 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 data = pd.read_csv('dataset.csv')
-X = data[['Dependents', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term',
-              'Credit_History', 'Property_Area', 'Gender_Male', 'Married_Yes', 'Education_Not Graduate', 'Self_Employed_Yes']]
+X = data[['Dependents', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History', 'Property_Area', 'Gender_Male', 'Married_Yes', 'Education_Not Graduate', 'Self_Employed_Yes']]
 y = data['Loan_Status']
 sc_X = StandardScaler()
 sc_X.fit(X)
