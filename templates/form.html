@@ -10,13 +10,38 @@
     <h1>Form is here</h1>
     <form action="{{ url_for('form') }}" method="post">
         {{ form.csrf_token }}
-        {{ form.username.label }}
-        {{ form.username }}
+        {{ form.name.label }}
+        {{ form.name }}
+        <br>
         {{ form.gender.label }}
         {{ form.gender }}
-        {{ form.password.label }}
-        {{ form.password }}
+        <br>
+        {{ form.dependents.label }}
+        {{ form.dependents }}
+        <br>
+        {{ form.education.label }}
+        {{ form.education }}
+        <br>
+        {{ form.applicant_income.label }}
+        {{ form.applicant_income }}
+        <br>
+        {{ form.coapplicant_income.label }}
+        {{ form.coapplicant_income }}
+        <br>
+        {{ form.property_area.label }}
+        {{ form.property_area }}
+        <br>
+        {{ form.loan_amount.label }}
+        {{ form.loan_amount }}
+        <br>
+        {{ form.loan_amount_term.label }}
+        {{ form.loan_amount_term }}
+        <br>
+        {{ form.credit_history.label }}
+        {{ form.credit_history }}
+        <br>
         <input type="submit" value="Submit">
     </form>
 </body>
 </html>
+
