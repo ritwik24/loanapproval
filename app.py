@@ -2,8 +2,10 @@ from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SelectField, FloatField
 from wtforms.validators import InputRequired
-import model
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+import pickle
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Secret_Key'
@@ -41,16 +43,17 @@ def form():
     form = LoginForm()
     if request.method == "POST":
         data = request.form.to_dict()
-        print(data)
+        # print(data)
         if form.validate_on_submit():
             input_data = data.copy()
             input_data.pop('csrf_token',None)
             input_data.pop('name',None)
             input_data = pd.DataFrame(input_data,index=['0'], columns=['dependents', 'applicant_income', 'coapplicant_income','loan_amount','loan_amount_term','credit_history','property_area','gender','married','education','self_employed'])
             input_data.to_csv('inputdata2.csv')
-            result = model.logistic.predict(
-                model.sc_X.transform(input_data))
-            print(result)
+            scaler = pickle.load(open('finalized_scaled.sav', 'rb'))
+            model = pickle.load(open('finalized_model.sav', 'rb'))
+            result = model.predict(scaler.transform(input_data))
+            # print(result)
             return 'Data {}'.format(result)
     return render_template('form.html',form = form)
 
