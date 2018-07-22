@@ -54,8 +54,9 @@ def form():
             model = pickle.load(open('finalized_model.sav', 'rb'))
             result = model.predict(scaler.transform(input_data))
             # print(result)
-            return 'Data {}'.format(result)
+            return render_template("result.html", result = result[0])
     return render_template('form.html',form = form)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
