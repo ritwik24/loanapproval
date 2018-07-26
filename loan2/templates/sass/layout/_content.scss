@@ -1,0 +1,246 @@
+.hero-slider{
+	background-color: $accent-color;
+
+	.slides{
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+		@include clearfix;
+
+		li{
+			text-align: center;
+			width: 100%;
+			margin-right: -100%;
+			float: left;
+			padding: 50px 0;
+			background-color: $accent-color;
+			opacity: 0;
+
+			&.slide-active{
+				opacity: 1;
+			}
+		}
+
+	}
+	h2{
+		margin: 0 0 40px;
+		color: white;
+		@include em(40);
+		font-weight: 300;
+	}
+	.slide-desc{
+		color: $accent-light-color;
+		@include em(24);
+		margin-bottom: 40px;
+	}
+
+	.flex-control-paging{
+		list-style: none;
+		margin:0;
+		padding-left: 0;
+		text-align: center;
+		padding-bottom: 30px;
+		li{ 
+			display: inline-block;
+			margin: 0 5px;
+		}
+		a{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			border: 3px solid white;
+			border-radius: 50%;
+			overflow: hidden;
+			text-indent: -9999px;
+			transition: .3s ease;
+			background-color: white;
+			cursor: pointer;
+
+			&.flex-active{
+				background-color: transparent;
+			}
+		}
+	}
+}
+
+.circle-numbered-feature{
+	counter-reset: list;
+	list-style: none;
+	padding-left: 0;
+	margin-top: 50px;
+
+	li{
+		position: relative;
+		padding-left: 70px;
+		min-height: 90px;
+		margin-bottom: 30px;
+
+		&:before{
+			counter-increment: list;
+			content: counter(list);
+			width: 45px;
+			height: 45px;
+			border-radius: 50%;
+			border: 2px solid $accent-color;
+			display: block;
+			text-align: center;
+			@include em(18);
+			line-height: 2;
+			color: $accent-color;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+
+
+	}
+}
+
+.request-form-section{
+	background-color: $secondary-color;
+	color: $body-dark-color;
+
+	h2,h3{ 
+		color: white;
+		font-weight: 300;
+	}
+}
+.fullwidth-block{
+	padding: 100px 0;
+}
+.section-title{
+	@include em(40);
+	margin: 0 0 30px;
+	font-weight: 300;
+	color: $strong-color;
+}
+.leading{
+	@include em(22);
+}
+
+.request-form{
+	background: white;
+	border-radius: 3px;
+	color: $body-color;
+	padding: 30px;
+
+	h2{
+		color: #4d555b;
+		margin: 0 0 20px;
+	}
+}
+
+.testimonial{
+	padding-left: 100px;
+	position: relative;
+	margin-bottom: 100px;
+
+	&:last-child{ margin-bottom: 0 }
+
+	@media screen and (max-width:990px){ margin-bottom: 30px }
+
+	.avatar{
+		width: 70px;
+		height: 70px;
+		border-radius: 50%;
+		overflow: hidden;
+		position: absolute;
+		left:0;
+		top:0;
+
+
+		img{
+			max-width: 100%;
+			width: 100%;
+			display: block;
+		}
+	}
+
+	.testimonial-content{
+		background: #f2f2f2;
+		border: 1px solid #e5e5e5;
+		border-radius: 3px; 
+		margin-bottom: 30px;
+		padding: 20px;
+		position: relative;
+		z-index: 1;
+		&:before, &:after{
+			content:" ";
+			border-style: solid;
+			position: absolute;
+			left: -20px;
+			top: 30px;
+		}
+		&:before{
+			border-color:transparent #f2f2f2 transparent transparent;
+			border-width: 10px;
+			
+		}
+		&:after{
+			border-width: 11px;
+			border-color:transparent #e5e5e5 transparent transparent;
+			left: -22px;
+			top: 29px;
+			z-index: -1;
+		}
+	}
+
+}
+.feature{
+	text-align: center;
+	margin-bottom: 30px;
+	.feature-icon{
+		@include em(60);
+		color: $accent-color;
+	}
+	.feature-title{ 
+		color: $accent-color;
+
+		a{
+			color: $accent-color;
+			transition: .3s ease;
+			&:hover{
+				color: lighten($accent-color, 10%)
+			}
+		}
+	}
+}
+.feature-intro{
+	.section-title{
+		margin-top: 100px;
+	}
+}
+.more-link{
+	padding: 50px 0 0;
+}
+
+
+.feature-section{
+
+	&:nth-child(even){
+		background-color: #f2f2f2;
+	}
+	.feature{
+		position: relative;
+		padding-left: 250px;
+		text-align: left;
+
+		@media screen and (max-width: 640px){
+			padding-left: 0;
+			text-align: center;
+		}
+	}
+	.feature-icon{
+		@include em(100);
+		color: $accent-color;
+		position: absolute;
+		left: 0;
+		top: 0;
+		@media screen and (max-width: 640px){
+			position: relative;
+		}
+	}
+	h2{
+		color: $accent-color;
+	}
+}
