@@ -1,0 +1,72 @@
+/*
+ * Global Styles
+ */
+
+body {
+	font-family: $primary-font;
+	font-size   : 15px;
+	font-weight : 300;
+	line-height : normal;
+	color: $body-color;
+
+}
+
+h1,h2,h3,h4,h5,h6{ color: $strong-color }
+
+a { text-decoration: none }
+
+address { font-style: normal }
+
+p{ margin-top: 0 }
+
+form{
+	.field{
+		margin-bottom: 20px;
+		display: table;
+		width: 100%;
+
+		label, .control{
+			display: table-cell;
+		}
+		label{
+			width: 150px;
+			color: $strong-color;
+			font-weight: 400;
+		}
+	}
+	input{
+		width: 100%;
+		padding: 10px;
+		border: 1px solid $form-border;
+		border-radius: 3px;
+		outline: none;
+		transition: .3s ease;
+
+		&:hover,&:focus{border-color: #666;}
+	}
+}
+.text-center{text-align: center}
+.text-left{text-align: left}
+.text-right{text-align: right}
+input[type="submit"],.button{
+	padding: 10px 20px;
+	color: white;
+	background-color: $accent-color;
+	border-radius: 3px;
+	text-align: center;
+	border: none;
+	transition: .3s ease;
+
+	&:hover,&:focus{
+		background-color: lighten($accent-color,10%);
+	}
+
+	&.secondary{
+		background-color: #eceff2;
+		color: $body-color;
+
+		&:hover{
+			background-color: darken(#eceff2,5%);			
+		}
+	}
+}
