@@ -33,6 +33,11 @@ class LoginForm(FlaskForm):
     tax_liens = FloatField('Tax Liens', validators=[InputRequired()])
  
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
 @app.route('/form', methods=['POST','GET'])
 def form():
     form = LoginForm()

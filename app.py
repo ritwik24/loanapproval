@@ -38,6 +38,11 @@ class LoginForm(FlaskForm):
         '0', 'Urban'), ('1', 'Rural'), ('2', 'Semi Urban')], validators=[InputRequired()])
 
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
 @app.route('/form', methods=['POST','GET'])
 def form():
     form = LoginForm()
