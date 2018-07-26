@@ -256,6 +256,8 @@ localStorage.setItem("PROFILE_REAUTH_EMAIL", "oneaccount@gmail.com");
                 <div class="card card-container">
    <h3 style="color: grey"> {% if result == "Y" %} Congratulations your loan might get approved! {% endif  %}</h3>
    <h3 style="color: grey"> {% if result == "N" %} Oops! {% endif  %}</h3>
-   </div></div>
+<form action="{{ url_for('form') }}" method="post" class="form-signin">
+<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Back</button></a>
+   </form></div></div>
 </body>
 </html>
