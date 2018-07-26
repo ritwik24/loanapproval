@@ -9,36 +9,31 @@ import pickle
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Secret_Key'
-
-
 class LoginForm(FlaskForm):
     name = StringField('Name', validators=[InputRequired()])
-    dependents = SelectField('Dependents', choices=[(
-        '0', '0'), ('1', '1'), ('2', '2'), ('3', '3+')], validators=[InputRequired()])
-    applicant_income = FloatField(
-        'Applicant Income', validators=[InputRequired()])
-    gender = SelectField('Gender', choices=[
-                         ('1', 'Male'), ('0', 'Female')], validators=[InputRequired()])
-    married = SelectField('Married', choices=[
-                         ('1', 'Yes'), ('0', 'No')], validators=[InputRequired()])
-    education = SelectField('Education', choices=[(
-        '0', 'Graduate'), ('1', 'Not Graduate')], validators=[InputRequired()])
-    self_employed = SelectField('Selfemployed', choices=[
-        ('1', 'Yes'), ('0', 'No')], validators=[InputRequired()])
+    current_loan_amount = FloatField('Current Loan Amount', validators=[InputRequired()])
+    term = SelectField('Term', choices=[
+                         ('1', 'Long'), ('0', 'Short')], validators=[InputRequired()])
+    credit_score = FloatField('Credit Score', validators=[InputRequired()])
+    annual_income = FloatField('Annual Income', validators=[InputRequired()])
+    years_in_current_job = SelectField('Years in Current Job', choices=[(
+        '0', '<1'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10+')], validators=[InputRequired()])
+    home_owenership = SelectField('Home Ownership', choices=[
+                         ('0', 'Home Mortgage'), ('1', 'Rent'), ('2', 'Own Home'), ('3', 'Have Mortgage')], validators=[InputRequired()])
+    purpose = SelectField('Purpose', choices=[
+                         ('0', 'Debt Consolidation'), ('2', 'Home Improvements'), ('3', 'Business Loan'), ('4', 'Buy A Car'), ('5', 'Medical Bills'), ('6', 'Buy House'), ('7', 'Take a Trip'), ('8', 'Major-purchases'), ('9', 'Small-Business'), ('10', 'Moving'), ('11', 'Wedding'), ('12', 'Vacation'), ('13', 'Educational Expenses'), ('14', 'renewable Energy'), ('1', 'Other')], validators=[InputRequired()])
+    monthly_debt =  FloatField('Monthly Debt', validators=[InputRequired()])
+    years_of_credit_history =  FloatField('Years of Credit History', validators=[InputRequired()])
+    months_since_last_delinquent = StringField('Months since last delinquent', validators=[InputRequired()])
+    number_of_open_accounts = IntegerField('Number of Open Accounts', validators=[InputRequired()])
+    number_of_credit_problems = IntegerField('Number of Credit Fields', validators=[InputRequired()])
+    current_credit_balance = IntegerField('Current Credit Balance', validators=[InputRequired()])
+    maximum_open_credit = IntegerField('Maximum Open Account', validators=[InputRequired()])
+    bankruptcies = IntegerField('Bankruptcies', validators=[InputRequired()])
+    tax_liens = IntegerField('Tax Liens', validators=[InputRequired()])
+ 
 
-    coapplicant_income = FloatField(
-        'Coapplicant Income', validators=[InputRequired()])
-
-    loan_amount = FloatField('Loan Amount', validators=[InputRequired()])
-    loan_amount_term = FloatField(
-        'Loan Amount Term', validators=[InputRequired()])
-    credit_history = SelectField('Credit History', choices=[(
-        '0', 'Nil'), ('1', 'Yes')], validators=[InputRequired()])
-    property_area = SelectField('Property Area', choices=[(
-        '0', 'Urban'), ('1', 'Rural'), ('2', 'Semi Urban')], validators=[InputRequired()])
-
-
-@app.route('/form', methods=['POST', 'GET'])
+ @app.route('/form', methods=['POST','GET'])
 def form():
     form = LoginForm()
     if request.method == "POST":
@@ -46,18 +41,18 @@ def form():
         # print(data)
         if form.validate_on_submit():
             input_data = data.copy()
-            input_data.pop('csrf_token', None)
-            input_data.pop('name', None)
-            input_data = pd.DataFrame(input_data, index=['0'], columns=['dependents', 'applicant_income', 'coapplicant_income',
-                                                                        'loan_amount', 'loan_amount_term', 'credit_history', 'property_area', 'gender', 'married', 'education', 'self_employed'])
+            input_data.pop('csrf_token',None)
+            input_data.pop('name',None)
+            input_data = pd.DataFrame(input_data,index=['0'], columns=['current_loan_amount', 'term', 'credit_score', 'annual_income', 'years_in_current_job', 'home_ownership', 'purpose','monthly_debt','years_of_credit_history','months_since_last_delinquent','number_of_open_accounts','number_of_credit_problems','current_credit_balance','maximum_open_credit','bankruptcies','tax_liens'])
             input_data.to_csv('inputdata2.csv')
             scaler = pickle.load(open('finalized_scaled.sav', 'rb'))
             model = pickle.load(open('finalized_model.sav', 'rb'))
             result = model.predict(scaler.transform(input_data))
             # print(result)
-            return render_template("result.html", result=result[0])
-    return render_template('form.html', form=form)
+            return render_template("result.html", result = result[0])
+    return render_template('form.html',form = form)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
